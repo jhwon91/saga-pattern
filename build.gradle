@@ -1,0 +1,36 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.10' apply false
+	id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+allprojects {
+	group = 'com.saga'
+	version = '0.0.1-SNAPSHOT'
+	repositories { mavenCentral() }
+}
+
+subprojects {// 모든 하위 모듈들에 이 설정을 적용합니다.
+	apply plugin: 'java-library'
+	apply plugin: 'io.spring.dependency-management'
+
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(17)
+		}
+	}
+
+	configurations {
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	dependencies {
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	}
+
+	tasks.named('test') {
+		useJUnitPlatform()
+	}
+}
