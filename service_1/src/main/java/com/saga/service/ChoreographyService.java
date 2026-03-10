@@ -82,7 +82,7 @@ public class ChoreographyService {
 
     @KafkaListener(topics = {"transaction.deposit.failed"}, groupId = "account-service-group")
     public void handleDepositFailed(DepositFailedEvent event){
-        compensateWithdraw(event.sagaId);
+        compensateWithdraw(event.sagaId());
     }
 
     @Transactional
