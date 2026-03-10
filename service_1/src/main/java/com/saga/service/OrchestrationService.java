@@ -30,10 +30,10 @@ public class OrchestrationService {
     private final RestTemplate restTemplate;
 
     @Value("${service.transaction.url}")
-    private final String transactionServiceUrl;
+    private String transactionServiceUrl;
 
     @Value("${service.notification.url}")
-    private final String notificationServiceUrl;
+    private String notificationServiceUrl;
 
     @Transactional
     public TransferResponse executeTransfer(TransferRequest request){
